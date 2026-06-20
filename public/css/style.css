@@ -1,6 +1,15 @@
 /* ------- Global styles & typography ------- */
 body{
     font-family: "Plus Jakarta Sans", sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container{
+    flex: 1;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 /* ------- Navigation bar ------- */
@@ -123,4 +132,110 @@ body{
 .card-price{
     font-size: 1.05rem;
     color: #3c433b;   
+}
+
+.add-btn{
+    background-color: #fe424d !important;
+    border: none !important;
+    color: white !important;
+}
+
+/* ------- New listing form ------- */
+.listing-form-shell{
+    padding: 1rem 0 2rem;
+}
+
+.listing-form-card{
+    background: linear-gradient(180deg, #ffffff 0%, #fff9f9 100%);
+    border: 1px solid rgba(254, 66, 77, 0.12);
+    border-radius: 1.5rem;
+    box-shadow: 0 18px 45px rgba(34, 34, 34, 0.08);
+    padding: 2rem;
+}
+
+.listing-form-header{
+    margin-bottom: 1.5rem;
+}
+
+.listing-form-kicker{
+    color: #fe424d;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+}
+
+.listing-form-header h1{
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.listing-form-subtitle{
+    color: #6c757d;
+    margin-bottom: 0;
+}
+
+.listing-form .form-label{
+    font-weight: 600;
+    color: #222222;
+    margin-bottom: 0.4rem;
+}
+
+.listing-form .form-control{
+    border-radius: 0.9rem;
+    border: 1px solid #d9d9d9;
+    padding: 0.85rem 1rem;
+    box-shadow: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.listing-form .form-control:focus{
+    border-color: #fe424d;
+    box-shadow: 0 0 0 0.2rem rgba(254, 66, 77, 0.14);
+}
+
+.listing-description{
+    min-height: 140px;
+    resize: vertical;
+}
+
+.listing-form-actions{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+}
+
+.listing-submit-btn{
+    min-width: 180px;
+    padding: 0.8rem 1.4rem;
+    border-radius: 999px !important;
+    font-weight: 600;
+    box-shadow: 0 10px 24px rgba(254, 66, 77, 0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.listing-submit-btn:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(254, 66, 77, 0.3);
+}
+
+@media (max-width: 767.98px){
+    .listing-form-card{
+        padding: 1.25rem;
+        border-radius: 1.1rem;
+    }
+
+    .listing-form-header h1{
+        font-size: 1.6rem;
+    }
+
+    .listing-form-actions{
+        justify-content: stretch;
+    }
+
+    .listing-submit-btn{
+        width: 100%;
+    }
 }
