@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const placeholderImageUrl = "https://www.monstertreeservice.com/cms/thumbnails/24/1080x540/images/articles/GettyImages-476116580.jpg";
+
 const listingSchema = new Schema({ 
     title: {
         type: String,
@@ -8,25 +10,30 @@ const listingSchema = new Schema({
     },
     description: {
         type: String,
-        required: true
+        
     },
     image: {
-        type: String,
-        default: "https://www.monstertreeservice.com/monster-tips/tree-care-tips/the-anatomy-of-trees-shrubs/",
-        
-        set: (v)=> v===""? "https://www.monstertreeservice.com/monster-tips/tree-care-tips/the-anatomy-of-trees-shrubs/" : v
+        filename: {
+            type: String,
+            default: "listingimage"
+        },
+        url: {
+            type: String,
+            default: placeholderImageUrl,
+            set: (v) => v === "" ? placeholderImageUrl : v
+        }
     },
     price: {
         type: Number,
-        required: true
+        
     },
     location: {
         type: String,
-        required: true
+        
     },
     country: {
         type: String,
-        required: true
+        
     },
 });
 
