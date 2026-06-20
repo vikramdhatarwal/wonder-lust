@@ -9,7 +9,8 @@ app.listen(3000,()=>{
     console.log("server is running on port 3000");
 });
 
-
+app.set("view engine","ejs");
+app.set("views",path.join(__dirname,"/views"));
 app.get("/",(req,res)=>{
     res.send("Hi,I am root");
 });
@@ -29,16 +30,30 @@ async function main(){
 
 }
 
-app.get("/testlistings",async(req,res)=>{ 
-    let sampleListing=new Listing({
-        title:"Beautiful Beach House",
-        description:"A stunning beach house with breathtaking ocean views. This property features 4 bedrooms, 3 bathrooms, and a spacious living area perfect for entertaining guests. Enjoy the sound of the waves and the fresh sea breeze from the comfort of your own home.",
-        
-        price:1200,
-        location:"Miami, FL",
-        country:"USA"
-    });
-    await sampleListing.save();
-    console.log("Sample listing created:");
-    res.send("Sample listing created!");
+//Index route to display all listings
+app.get("/listings",async(req,res)=>{
+    try{
+        const allListings=await Listing.find({});
+        res.render("listings/index.ejs",{allListings});
+    }catch(err){
+        console.error("Error fetching listings:", err);
+        res.status(500).send("Internal Server Error");
+    }
 });
+
+
+
+// app.get("/testlistings",async(req,res)=>{ 
+//     let sampleListing=new Listing({
+//         title:"Beautiful Beach House",
+//         description:"A stunning beach house with breathtaking ocean views. This property features 4 bedrooms, 3 bathrooms, and a spacious living area perfect for entertaining guests. Enjoy the sound of the waves and the fresh sea breeze from the comfort of your own home.",
+        
+//         price:1200,
+//         location:"Miami, FL",
+//         country:"USA"
+//     });
+//     await sampleListing.save();
+//     console.log("Sample listing created:");
+//     res.send("Sample listing created!");
+// });
+
