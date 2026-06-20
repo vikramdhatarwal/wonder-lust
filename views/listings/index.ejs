@@ -1,24 +1,32 @@
 <% layout('layouts/boilerplate') %>
+<%# Use the boilerplate layout for head/meta/styles/scripts %>
 <body>
-    <h1>All Listings</h1>
-
-    <!-- <form method="GET" action="/listings/new">
-        <button>Add New Listing </button>
-    </form> -->
-    <ul>
+    <div class="container py-5">
+        <h1 class="mb-4 fw-bold">All Listings</h1>
+        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4">
+        <%# Iterate over allListings and render a card for each listing %>
         <% allListings.forEach(listing => { %>
-            <li>
-                <h2><%= listing.title %></h2>
-                <p><%= listing.description %></p>
-                <p>Location: <%= listing.location %>, Country: <%= listing.country %></p>
-                <p>Price: &#8377 <%= listing.price.toLocaleString('en-IN') %></p>
-                <% if (listing.image) { %>
-                    <img src="<%= listing.image.url %>" alt="<%= listing.title %>" style="max-width: 200px;">
-                <% } %>
-                <!-- <a href="/listings/<%= listing._id %>/edit">Edit</a> -->
-                <a href="/listings/<%= listing._id %>">View Details</a>
-
-                
-            </li>
+            <%# Wrap the entire card in an anchor to make the card clickable %>
+            <a href="/listings/<%= listing._id %>" class="text-decoration-none">
+                <div class="card col h-100 shadow-sm listing-card">
+                    <%# Display listing image when available (keeps layout intact otherwise) %>
+                    <% if (listing.image) { %>
+                        <img src="<%= listing.image.url %>" alt="Listing Image" class="card-img-top" style="height: 20rem;">
+                    <% } %>
+                    <div class="card-img-overlay"></div>
+                    <div class="card-body">
+                        <%# Card details: title, short description, location and price %>
+                        <p class="card-text">
+                            <p class="card-title text-dark"><b><%= listing.title %></b></p>
+                            <p class="card-description text-muted small"><%= listing.description %></p>
+                            <p class="card-location text-muted small">📍 <%= listing.location %>, <%= listing.country %></p>
+                            <p class="card-price "><b>₹<%= listing.price.toLocaleString('en-IN') %> /night</b></p>
+                        </p>
+                        
+                    </div>
+                </div>
+            </a>
         <% }); %>
+    </div>
+    </div>
 </body>

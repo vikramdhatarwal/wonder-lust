@@ -1,19 +1,28 @@
+/* ------- Global styles & typography ------- */
+body{
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+}
+
+/* ------- Navigation bar ------- */
 .navbar{
     height: 5rem;
     background-color: white;
-
 }
+
+/* Icon used in header/brand */
 .fa-compass{
     font-size: 2rem;
     color:#fe424d;
 }
 
+/* Primary nav links styling */
 .nav-link{
     color: #222222 !important;
     font-size: 1.2rem;
     margin-right: 1rem;
 }
 
+/* ------- Footer / info blocks ------- */
 .f-info-links a{
     text-decoration: none;
     color: #222222;
@@ -24,18 +33,21 @@
     text-decoration: underline;
 }
 
+/* Footer layout helpers — center groups horizontally */
 .f-info-links , .f-info-socials, .f-info-brand{
     width: 100%;
     align-items: center;
     display: flex;
     justify-content: center;
 }
+
 .f-info-socials i{
-  
     margin-right: 2rem;
     font-size: 1.2rem;
 }
+
 .f-info{
+    /* Footer container: centers content, light background */
     text-align: center;
     height : 8rem;
     display: flex;
@@ -43,4 +55,72 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: space-evenly;
+}
+
+
+/* ------- Card / Listing styles ------- */
+.card{
+    /* Remove default border from bootstrap cards and add spacing */
+    border: none !important;
+    margin-bottom: 2rem;
+}
+
+.card-img-top{
+    /* Make images fit neatly and have rounded corners */
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+
+.card-body{
+    /* Remove inner padding to align custom layout */
+    padding: 0 !important;
+}
+
+.card-text p{
+    /* Ensure body text weight is consistent */
+    font-weight: 400 !important;
+}
+
+/* Image overlay used for hover effects */
+.card-img-overlay{
+    opacity: 0;
+}
+
+.card-img-overlay:hover{
+    opacity: 0.2;
+    background-color:white
+}
+
+/* Listing card lift animation and rounded corners */
+.listing-card{
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 1rem;
+}
+
+.listing-card:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* ------- Card typography helpers ------- */
+.card-title{
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-description{
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+}
+
+.card-location{
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+}
+
+.card-price{
+    font-size: 1.05rem;
+    color: #3c433b;   
 }
