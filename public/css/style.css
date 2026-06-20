@@ -239,3 +239,167 @@ body{
         width: 100%;
     }
 }
+
+/* ------- Listing show page ------- */
+.listing-show-shell{
+    padding: 1rem 0 2.5rem;
+}
+
+.listing-show-card{
+    background: #ffffff;
+    border: 1px solid rgba(34, 34, 34, 0.08);
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 18px 45px rgba(34, 34, 34, 0.08);
+}
+
+.listing-show-media{
+    background: linear-gradient(135deg, #fff3f4 0%, #ffffff 100%);
+}
+
+.listing-show-image{
+    width: 100%;
+    max-height: 460px;
+    object-fit: cover;
+    display: block;
+}
+
+.listing-show-placeholder{
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    color: #6c757d;
+    font-size: 1rem;
+}
+
+.listing-show-placeholder i{
+    font-size: 3rem;
+    color: #fe424d;
+}
+
+.listing-show-content{
+    padding: 1.75rem;
+}
+
+.listing-show-header{
+    margin-bottom: 1.25rem;
+}
+
+.listing-show-kicker{
+    color: #fe424d;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+}
+
+.listing-show-header h1{
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 0.9rem;
+}
+
+.listing-show-badges{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.listing-show-badge{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.6rem 0.9rem;
+    border-radius: 999px;
+    background: #f8f9fa;
+    color: #444;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.listing-show-badge i{
+    color: #fe424d;
+}
+
+.listing-show-price-wrap{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.1rem;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, rgba(254, 66, 77, 0.08), rgba(254, 66, 77, 0.02));
+    margin-bottom: 1.5rem;
+}
+
+.listing-show-price-label{
+    color: #6c757d;
+    font-weight: 600;
+}
+
+.listing-show-price{
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #222222;
+}
+
+.listing-show-description h2{
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+}
+
+.listing-show-description p{
+    color: #4b4f56;
+    line-height: 1.75;
+    margin-bottom: 0;
+}
+
+.listing-show-actions{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 1.75rem;
+}
+
+.listing-action-btn{
+    min-width: 160px;
+    border-radius: 999px !important;
+    padding: 0.8rem 1.35rem;
+    font-weight: 600;
+}
+
+.listing-delete-form{
+    margin: 0;
+}
+
+.listing-delete-btn{
+    box-shadow: 0 10px 24px rgba(254, 66, 77, 0.18);
+}
+
+@media (max-width: 767.98px){
+    .listing-show-content{
+        padding: 1.25rem;
+    }
+
+    .listing-show-header h1{
+        font-size: 1.7rem;
+    }
+
+    .listing-show-price-wrap{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .listing-action-btn{
+        width: 100%;
+    }
+
+    .listing-show-actions{
+        flex-direction: column;
+    }
+}
