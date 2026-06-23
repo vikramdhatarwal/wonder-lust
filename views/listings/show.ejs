@@ -28,7 +28,7 @@
                         <span class="listing-show-price-label">Price per night</span>
                         <span class="listing-show-price">
                             <% if (listing.price != null) { %>
-                                &#8377; <%= listing.price.toLocaleString('en-IN') %>
+                                &#8377; <%= listing.price.toLocaleString('en-IN') %>/night
                             <% } else { %>
                                 Price unavailable
                             <% } %>
@@ -44,6 +44,23 @@
                         <a href="/listings/<%= listing._id %>/edit" class="btn btn-outline-dark listing-action-btn">Edit Listing</a>
                         <form action="/listings/<%= listing._id %>/delete" method="get" class="listing-delete-form">
                             <button type="submit" class="btn btn-dark add-btn listing-submit-btn listing-delete-btn">Delete Listing</button>
+                        </form>
+                    </div>
+                    <br> 
+                    <hr>
+
+                    <div class="col-12 col-lg-10 col-xl-9 mb-3">
+                        <h4> leave a review</h4>
+                        <form action="/listings/<%= listing._id %>/reviews" method="post">
+                            <div class="mb-3 mt-3">
+                                <label for="rating" class="form-label">Rating</label>
+                                <input type="range" min="1" max="5"  id="rating" class="form-range" name="review[rating]" required>
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label for="comment" class="form-label">Comment</label>
+                                <textarea class="form-control" id="comment" name="review[comment]" rows="3" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-outline-dark">Submit Review</button>
                         </form>
                     </div>
                 </div>

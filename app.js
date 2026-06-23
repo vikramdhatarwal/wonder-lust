@@ -9,6 +9,7 @@ const ejsMate=require("ejs-mate");
 const wrapAsync=require("./utils/wrapAsync.js");
 const ExpressError=require("./utils/ExpressError.js");
 const { listingSchema } = require("./schema.js");
+const Review=require("./models/review.js");
 app.engine("ejs",ejsMate);
 app.use(express.urlencoded({extended:true}));
 const methodOverride=require("method-override");
@@ -131,6 +132,28 @@ app.delete("/listings/:id",wrapAsync(async(req,res)=>{
   
 }));
 
+//review route to handle form submission and create a new review for a listing
+app.post("/listings/:id/reviews",wrapAsync(async(req,res)=>{
+    const {id}=req.params;
+    const {rating, comment} = req.body.review;
+
+    const listing = await Listing.findById(id);
+    if (!listing) {
+        throw new ExpressError(404, "Listing not found");
+    }
+
+    const newReview = new Review({
+        rating,
+        comment
+    });
+
+    listing.reviews.push(newReview);
+    await newReview.save();
+    await listing.save();
+
+    res.redirect(`/listings/${id}`);
+}));
+
 app.use((req,res,next)=>{
     next(new ExpressError(404,"Page Not Found!"));
 });
@@ -141,6 +164,8 @@ app.use((err,req,res,next)=>{
     res.status(statusCode).render("listings/error.ejs",{err});
     // res.status(statusCode).send(message);
 });
+
+
 // app.get("/testlistings",async(req,res)=>{ 
 //     let sampleListing=new Listing({
 //         title:"Beautiful Beach House",
