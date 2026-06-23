@@ -46,39 +46,61 @@
                             <button type="submit" class="btn btn-dark add-btn listing-submit-btn listing-delete-btn">Delete Listing</button>
                         </form>
                     </div>
-                    <br> 
-                    <hr>
+                    <div class="listing-show-divider"></div>
 
-                    <div class="col-12 col-lg-10 col-xl-9 mb-3">
-                        <h4> leave a review</h4>
-                        <form action="/listings/<%= listing._id %>/reviews" method="post" novalidate class="needs-validation">
-                            <div class="mb-3 mt-3">
-                                <label for="rating" class="form-label">Rating</label>
-                                <input type="range" min="1" max="5"  id="rating" class="form-range" name="review[rating]" required>
+                    <div class="listing-reviews-section">
+                        <div class="listing-review-form-card">
+                            <div class="listing-section-header">
+                                <p class="listing-show-kicker">Guest feedback</p>
+                                <h2>Leave a review</h2>
                             </div>
-                            <div class="mb-3 mt-3">
-                                <label for="comment" class="form-label">Comment</label>
-                                <textarea class="form-control" id="comment" name="review[comment]" rows="3" required ></textarea>
-                                <div class="invalid-feedback">
-                                    Please provide a comment.
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-outline-dark">Submit Review</button>
-                        </form>
-                        <hr>
-
-                        <h4>All Reviews</h4>
-                        <% if (listing.reviews.length === 0) { %>
-                            <p>No reviews yet.</p>
-                        <% } else { %>
-                            <% listing.reviews.forEach(review => { %>
-                                <div class="card mb-3">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Rating: <%= review.rating %> / 5</h5>
-                                        <p class="card-text"><%= review.comment %></p>
+                            <form action="/listings/<%= listing._id %>/reviews" method="post" novalidate class="listing-review-form needs-validation">
+                                <div class="mb-3">
+                                    <label for="rating" class="form-label">Rating</label>
+                                    <div class="listing-rating-control">
+                                        <span>1</span>
+                                        <input type="range" min="1" max="5" id="rating" class="form-range" name="review[rating]" required>
+                                        <span>5</span>
                                     </div>
                                 </div>
-                            <% }); %>
+                                <div class="mb-3">
+                                    <label for="comment" class="form-label">Comment</label>
+                                    <textarea class="form-control" id="comment" name="review[comment]" rows="4" placeholder="Share what stood out about this stay" required></textarea>
+                                    <div class="invalid-feedback">
+                                        Please provide a comment.
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-dark add-btn listing-submit-btn listing-review-submit">Submit Review</button>
+                            </form>
+                        </div>
+
+                        <div class="listing-section-header listing-reviews-heading">
+                            <p class="listing-show-kicker">Reviews</p>
+                            <h2>What guests are saying</h2>
+                        </div>
+                        <% if (listing.reviews.length === 0) { %>
+                            <div class="listing-empty-reviews">
+                                <i class="fa-regular fa-message"></i>
+                                <p>No reviews yet. Be the first to share your experience.</p>
+                            </div>
+                        <% } else { %>
+                            <div class="listing-review-grid">
+                                <% listing.reviews.forEach(review => { %>
+                                    <div class="listing-review-card">
+                                        <div class="listing-review-card-head">
+                                            <div class="listing-review-avatar">JD</div>
+                                            <div>
+                                                <h3>Jan Doe</h3>
+                                                <p><i class="fa-solid fa-star"></i> <%= review.rating %> / 5</p>
+                                            </div>
+                                        </div>
+                                        <p class="listing-review-comment"><%= review.comment %></p>
+                                        <form action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE" method="post" class="listing-review-delete-form">
+                                            <button type="submit" class="btn btn-sm btn-outline-dark listing-review-delete-btn">Delete</button>
+                                        </form>
+                                    </div>
+                                <% }); %>
+                            </div>
                         <% } %>
                     </div>
                 </div>
