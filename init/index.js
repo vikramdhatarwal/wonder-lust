@@ -13,6 +13,7 @@ async function main(){
         console.log("Connected to MongoDB");
 
         await listing.deleteMany({});
+        initData.data = initData.data.map((obj) => ({...obj, owner: '6a3cd4877d3af61f9e243eec'}));
         console.log("Existing listings deleted.");
         await listing.insertMany(initData.data);
         console.log("New listings inserted.");
