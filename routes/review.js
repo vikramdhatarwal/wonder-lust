@@ -15,35 +15,13 @@ const validateReview=(req,res,next)=>{
     }
     next();
 };
+const reviewController=require("../controllers/reviews.js");
+
 
 //review route to handle form submission and create a new review for a listing
-router.post("/", isLoggedIn, validateReview, wrapAsync(async(req,res)=>{
-    const {id}=req.params;
-    const {rating, comment} = req.body.review;
-    const listing = await Listing.findById(id);
-    if (!listing) {
-        throw new ExpressError(404, "Listing not found");
-    }
-    const newReview = new Review({
-        rating,
-        comment,
-        author: req.user._id
-    });
-    newReview.author = req.user._id;
-    listing.reviews.push(newReview);
-    await newReview.save();
-    await listing.save();
-    req.flash("success","Successfully created a new review!");
-    res.redirect(`/listings/${id}`);
-}));
+router.post("/", isLoggedIn, validateReview, wrapAsync(reviewController.createReview));
 
 //Delete route to delete an existing review
-router.delete("/:reviewId", isLoggedIn, isReviewAuthor, wrapAsync(async(req,res)=>{
-    const {id, reviewId}=req.params;
-    await Listing.findByIdAndUpdate(id,{$pull:{reviews:reviewId}});
-    await Review.findByIdAndDelete(reviewId);
-    req.flash("success","Successfully deleted the review!");
-    res.redirect(`/listings/${id}`);
-}));
+router.delete("/:reviewId", isLoggedIn, isReviewAuthor, wrapAsync(reviewController.deleteReview));
 
 module.exports=router;
