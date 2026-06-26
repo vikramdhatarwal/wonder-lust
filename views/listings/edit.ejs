@@ -8,7 +8,7 @@
                     <h1>Edit Listing</h1>
                     <p class="listing-form-subtitle">Refine the details travelers will see before your listing goes live.</p>
                 </div>
-                <form action="/listings/<%= listing._id %>?_method=PUT" method="POST" class="listing-form needs-validation" novalidate>
+                <form action="/listings/<%= listing._id %>?_method=PUT" method="POST" class="listing-form needs-validation" novalidate enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
                         <input type="text" id="title" name="listing[title]" value="<%= listing.title %>" class="form-control" required>
@@ -24,11 +24,9 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="imageUrl" class="form-label">Image URL</label>
-                        <input type="text" id="imageUrl" name="listing[image][url]" value="<%= listing.image ? listing.image.url : '' %>" class="form-control" required>
-                        <div class="invalid-feedback">
-                            Please provide an image URL for your listing.
-                        </div>
+                        <label for="imageUrl" class="form-label">New Image</label>
+                        <input type="file" id="imageUrl" name="listing[image]"  class="form-control" >
+                       
                     </div>
                     <div class="row g-3">
                         <div class="mb-3 col-md-4">
