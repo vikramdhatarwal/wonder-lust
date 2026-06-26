@@ -8,7 +8,7 @@
                     <h1>Create New Listing</h1>
                     <p class="listing-form-subtitle">Add the details travelers need to discover your place quickly.</p>
                 </div>
-                <form action="/listings" method="POST" class="listing-form needs-validation" novalidate>
+                <form action="/listings" method="POST" class="listing-form needs-validation" novalidate enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
                         <input type="text" id="title" name="listing[title]" placeholder="Enter title" class="form-control" required>
@@ -23,11 +23,12 @@
                             Please provide a description for your listing.
                         </div>
                     </div>
+                    
                     <div class="mb-3">
-                        <label for="imageUrl" class="form-label">Image URL</label>
-                        <input type="text" id="imageUrl" name="listing[image][url]" placeholder="Enter image URL" class="form-control">
+                        <label for="imageUrl" class="form-label">Upload Image</label>
+                        <input type="file" id="imageUrl" name="listing[image]" placeholder="Enter image URL" class="form-control">
                         <div class="invalid-feedback">
-                            Please provide an image URL for your listing.
+                            Please provide an image for your listing.
                         </div>
                     </div>
                     <div class="row g-3">
