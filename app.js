@@ -123,9 +123,27 @@ app.use((req,res,next)=>{
 });
 
 app.use((err,req,res,next)=>{
-    let {statusCode=500,message="Something went wrong!"}=err;
-    
-    res.status(statusCode).render("listings/error.ejs",{err});
+    if (err.name === "CastError") {
+        err = new ExpressError(404, "The page you are looking for does not exist.");
+    } else if (err.name === "ValidationError") {
+        err = new ExpressError(400, err.message);
+    }
+
+    const statusCode = err.statusCode || 500;
+    const message = err.message || "Something went wrong!";
+    const friendlyTitle = statusCode === 404
+        ? "We could not find that page"
+        : statusCode === 400
+            ? "Something needs a quick fix"
+            : "Something went wrong";
+
+    res.status(statusCode).render("listings/error.ejs", {
+        err: {
+            statusCode,
+            message,
+            title: friendlyTitle
+        }
+    });
     // res.status(statusCode).send(message);
 });
 
