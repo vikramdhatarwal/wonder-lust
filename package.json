@@ -1,5 +1,8 @@
 {
-  "name": "wonder-lust-major-project",
+  "engines": {
+    "node": "=20.18.0"
+  },
+  "name": "wonderlust",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -12,6 +15,7 @@
   "dependencies": {
     "cloudinary": "^2.10.0",
     "connect-flash": "^0.1.1",
+    "connect-mongo": "^6.0.0",
     "dotenv": "^17.4.2",
     "ejs": "^6.0.1",
     "ejs-mate": "^4.0.0",

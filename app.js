@@ -10,6 +10,7 @@ const ejs=require("ejs");
 const PORT=3000;
 const ejsMate=require("ejs-mate");
 const session=require("express-session");
+const { MongoStore } = require('connect-mongo');
 const Flash=require("connect-flash");
 const ExpressError = require("./utils/ExpressError.js");
 const listingRoutes=require("./routes/listing.js");
@@ -30,8 +31,19 @@ app.use (express.static(path.join(__dirname,"/public")));
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"/views"));
 
+
+const store = new MongoStore({
+    mongoUrl: process.env.ATLASDB_URL,
+    crypto: {
+        secret: process.env.SECRET
+    },
+    touchAfter: 24 * 60 * 60 // time period in seconds
+});
+
+
 const sessionOptions={
-    secret:"thisshouldbeabettersecret!",
+    store: store,
+    secret: process.env.SECRET,
     resave:false,
     saveUninitialized:true,
     cookie:{
@@ -40,6 +52,8 @@ const sessionOptions={
         maxAge:1000*60*60*24*7
     }
 };
+
+
 
 // Sessions power login persistence and flash messages.
 app.use(session(sessionOptions));
@@ -68,7 +82,7 @@ app.get("/",(req,res)=>{
 });
 
 
-const MONGO_URL="mongodb://127.0.0.1:27017/wanderlust";
+const MONGO_URL=process.env.ATLASDB_URL;
 
 
 // Start the server only after MongoDB is reachable.
