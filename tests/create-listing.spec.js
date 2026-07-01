@@ -8,7 +8,7 @@ test('User can create a listing', async ({ page }) => {
 
   // Login
   await login(page);
-
+  await page.goto('/listings');
   // Verify login
   await expect(page.getByRole('link', { name: 'Logout' })).toBeVisible();
 
