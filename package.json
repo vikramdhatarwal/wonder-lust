@@ -5,7 +5,11 @@
   "name": "wonderlust",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:report": "playwright show-report"
+  },
   "keywords": [],
   "author": "Vikram Dhatarwal",
   "license": "ISC",
